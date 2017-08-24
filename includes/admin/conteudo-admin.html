@@ -1,0 +1,691 @@
+<style>
+.analise-admin td {
+    background-color: rgba(255, 255, 255, 0.09);
+    padding: 1% !important;
+    /*text-align: center;*/
+    font-weight: 600;
+    text-transform: lowercase;
+}
+#h1-estatisticas {
+    background-color: rgba(255, 255, 255, 0.82) !important;
+    color: #484848 !important;
+    font-size: 1.3vw !important;
+    padding: 5px 5px 5px 5px !important;
+	text-align: center;
+}
+</style>
+<div class="col-xs-10 box-conteudo">
+	<div id="myTabContent" class="tab-content">
+		<!-- HOME ADMIN -->
+		<div role="tabpanel" class="tab-pane fade active in" id="home" aria-labelledby="home-tab">
+			<div id="pai-estatisticas-admin" class="col-xs-12" style="display: block ! important; padding: 2px ! important;">
+				<div id="estatisticas-admin" class="col-xs-12 box-conteudo">
+					<div style="padding: 0px ! important;" id="jogos-perdidos" class="col-md-6 col-xs-6 ">
+						<h1 id="h1-estatisticas" style="margin: 0px ! important; font-weight: 800 !important;">JOGOS PARA ANÁLISE</h1><h1 style="border: medium none ! important; font-size: 50px; text-align: center; margin: 0px 40px; font-weight: 300; color: rgba(255, 255, 255, 0.87);" class="jogos-analise"></h1>
+					</div>
+					<div style="padding: 0px ! important;" id="jogos-perdidos" class="col-md-6 col-xs-6 ">
+						<h1 id="h1-estatisticas" style="margin: 0px ! important; font-weight: 800 !important;">PRÓXIMOS JOGOS</h1><h1 style="border: medium none ! important; font-size: 50px; text-align: center; margin: 0px 40px; font-weight: 300; color: rgba(255, 255, 255, 0.87);" class="jogos-proximos"></h1>
+					</div>
+					<div style="padding: 0px ! important;" id="jogos-perdidos" class="col-md-4 col-xs-6 ">
+						<h1 id="h1-estatisticas" style="margin: 0px ! important; font-weight: 800 !important;">JOGOS HOJE</h1><h1 style="border: medium none ! important; font-size: 50px; text-align: center; margin: 0px 40px; font-weight: 300; color: rgba(255, 255, 255, 0.87);" class="jogos-hoje"></h1>
+					</div>
+					<div style="padding: 0px ! important;" id="jogos-perdidos" class="col-md-4 col-xs-6 ">
+						<h1 id="h1-estatisticas" style="margin: 0px ! important; font-weight: 800 !important;">JOGOS P/ FINALIZAR</h1><h1 style="border: medium none ! important; font-size: 50px; text-align: center; margin: 0px 40px; font-weight: 300; color: rgba(255, 255, 255, 0.87);" class="jogos-finalizar"></h1>
+					</div>
+					<div style="padding: 0px ! important;" id="jogos-perdidos" class="col-md-4 col-xs-6 ">
+						<h1 id="h1-estatisticas" style="margin: 0px ! important; font-weight: 800 !important;">JOGOS FINALIZADOS</h1><h1 style="border: medium none ! important; font-size: 50px; text-align: center; margin: 0px 40px; font-weight: 300; color: rgba(255, 255, 255, 0.87);" class="jogos-finalizados"></h1>
+					</div>
+					<div style="padding: 20px 0px 0px ! important;" id="jogos-perdidos" class="col-md-12 col-xs-12">
+						<h1>PRÓXIMOS JOGOS</h1>
+						<section>
+							<div class="esconde" id="pagina-meus-jogos">
+							<div style="display: none; width: 100%; height: 100%; padding: 20px; color: white; margin-bottom: 20px;" id="resultado-botoes-jogo-confirmado"></div>
+							<table class="table table-striped">
+							  <thead style="background-color: rgb(219, 219, 219); color: rgb(62, 62, 62);">
+								<tr>
+									<th>PERIODO</th>
+									<th>TIME 1</th>
+									<th>TIME 2</th>
+									<th>DATA</th>
+									<th>TELEFONES</th>
+									<th>ESTADO</th>
+									<th></th>
+									<th></th>
+								</tr>
+							  </thead>
+							  <tbody id="lista-jogos">
+							  </tbody>
+							</table>
+							<div style="display: block; background-color: rgb(204, 31, 31); width: 100%; height: 100%; padding: 20px; color: white; margin-bottom: 20px;" id="pagina-meus-jogos-erro22">Nenhum jogo encontrado...</div>
+							</div>
+						</section>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- JOGOS P/ ANÁLISE -->
+		<div role="tabpanel" class="tab-pane fade" id="profile" aria-labelledby="profile-tab">
+			<h1>JOGOS PARA ANÁLISE</h1>
+			<section>
+				<div class="esconde" id="admin-analisa-tbody">
+					<table id="#our_table" class="table table-striped">
+					  <thead style="background-color: rgb(219, 219, 219); color: rgb(62, 62, 62);">
+						<tr>
+							<th>PERIODO</th>
+							<th>TIME 1</th>
+							<th>TIME 2</th>
+							<th>ESTADO</th>
+							<th></th>
+						</tr>
+					  </thead>
+					  <tbody id="admin-analisa">
+					  </tbody>
+					</table>
+<!--<table class="table table-striped" id="#our_table" border="1" style="border: none  !important;">
+    <tr style="background-color: rgb(219, 219, 219) !important; color: rgb(62, 62, 62) !important;">
+							<th>PERIODO</th>
+							<th>TIME 1</th>
+							<th>TIME 2</th>
+							<th>ESTADO</th>
+							<th></th>
+    </tr>
+    <tr style="background-color: rgba(255, 255, 255, 0.09) ! important;" class="admin">
+        <td><span class="event" id="item1" draggable="true">Item 1</span></td>
+        <td><span class="event" id="item2" draggable="true">Item 2</span></td>
+        <td><span class="event" id="item3" draggable="true">Item 3</span></td>
+        <td style="text-transform: uppercase; color: rgb(237, 196, 48);">EM ANÁLISE</td>
+        <td><button class="col-xs-12 button" style="padding: 10px 0px; font-size: 1.6rem;" name="confirmar-dados" onclick="marcarJogo(1);">CONFIRMAR</button></td>
+    </tr>
+    <tr style="background-color: rgba(255, 255, 255, 0.09) ! important;" class="admin">
+        <td><span class="event" id="item4" draggable="true">Item 4</span></td>
+        <td><span class="event" id="item5" draggable="true">Item 5</span></td>
+        <td><span class="event" id="item6" draggable="true">Item 6</span></td>
+        <td style="text-transform: uppercase; color: rgb(237, 196, 48);">EM ANÁLISE</td>
+        <td><button class="col-xs-12 button" style="padding: 10px 0px; font-size: 1.6rem;" name="confirmar-dados" onclick="marcarJogo(1);">CONFIRMAR</button></td>
+    </tr>
+</table>-->
+<style>
+.admin td {
+    background-color: rgba(255, 255, 255, 0.09);
+    padding: 1% !important;
+    text-align: center;
+    font-weight: 600;
+    text-transform: lowercase;
+	border: none !important;
+}
+.table > tbody > tr > td, .table > tbody > tr > th, .table > tfoot > tr > td, .table > tfoot > tr > th, .table > thead > tr > td, .table > thead > tr > th {
+    border: none !important;
+}
+.table > tbody > tr > td {
+    text-align: left !important;
+}
+.table-striped > tbody > tr:nth-of-type(2n+1) {
+    background-color: rgba(249, 249, 249, 0.09);
+}
+</style>
+					<script>
+					/*$(document).ready(function () {
+						$('.event').on("dragstart", function (event) {
+							var dt = event.originalEvent.dataTransfer;
+							dt.setData('Text', $(this).attr('id'));
+						});
+						$('table td').on("dragenter dragover drop", function (event) {
+							event.preventDefault();
+							if (event.type === 'drop') {
+								var data = event.originalEvent.dataTransfer.getData('Text', $(this).attr('id')); // PEGA ID DO QUE SERÁ DROPADO
+								alert(data);
+								
+								de = $('#' + data).detach();
+								console.dir(de[0]['innerText']);
+								if (event.originalEvent.target.tagName === "SPAN") {
+									alert('TEM SPAN');
+									de.insertBefore(event.originalEvent.target);
+									de.html($(event.originalEvent.target));
+									$('tr.admin:nth-child(2) > td:nth-child(2)').html('teteee');
+								}
+								else {
+									alert('NÃO TEM SPAN');
+									de.appendTo($(this));
+								}
+							};
+						});
+					})*/
+					$(document).ready(function () {
+						$('.event').on("dragstart", function (event) {
+							var dt = event.originalEvent.dataTransfer;
+							dt.setData('Text', $(this).attr('id'));
+						});
+						$('table td').on("dragenter dragover drop", function (event) {
+							event.preventDefault();
+							if (event.type === 'drop') {
+								var data = event.originalEvent.dataTransfer.getData('Text', $(this).attr('id'));
+								if (event.originalEvent.target.tagName === "SPAN") { 
+									// Se tiver algo no local escolhido para droppar:
+									var inicio = data;
+									var destino = event.originalEvent.target['id'];
+
+									var conteudo_inicio = $('#'+inicio).text();
+									var conteudo_destino = $('#'+destino).text();
+									
+									$('#'+destino).text(conteudo_inicio);
+									$('#'+inicio).text(conteudo_destino);
+									
+									$('#'+destino).attr("id",inicio);
+									$('#'+inicio).attr("id",destino);
+								}
+								else { 
+									// Se não tiver nada no local escolhido para droppar:
+									de.appendTo($(this));
+								}
+							};
+						});
+					})
+					</script>
+					<div style="display: block; background-color: rgb(204, 31, 31); width: 100%; height: 100%; padding: 20px; color: white; margin-bottom: 20px;" id="pagina-meus-jogos-erro3">Nenhum jogo encontrado...</div>
+				</div>
+			</section>
+			<!-- MODAL CONFIRMAR JOGO -->
+			<div class="teste2 modal fade" id="meuPerfil" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1">
+			   <div class="modal-dialog" role="document">
+				  <div class="modal-content">
+					 <!-- CABEÇALHO MODAL -->
+					 <div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h4 class="modal-title" id="myModalLabel1">CONFIRMAR JOGO</h4>
+					 </div>
+					 <!-- CORPO DO MODAL -->
+					 <div class="modal-body">
+						<div style="display: none; width: 100%; height: 100%; padding: 20px; color: white; margin-bottom: 20px;" id="resultado-confirmar-jogo"></div>
+						<form id="confirmar-jogo-admin" name="confirmar-jogo-admin">
+						   <input name="acao" value="confirmar-jogo" type="hidden">
+						   <input id="jogo-id" type="hidden">
+						   <div style="width: 50%; float: left;" class="field-wrap">
+							   <label style="font-size: 1.0vw;" class="active"> Telefone de: <strong id="nome-1" style="color: rgba(255, 255, 255, 0.92) ! important;"></strong></label>			
+								<p id="telefone-1" style="font-size: 1.5vw; font-weight: 600; color: rgba(255, 255, 255, 0.92) ! important;"></p>
+						   </div><div style="width: 50%; float: right;" class="field-wrap">
+							   <label style="font-size: 1.0vw;" class="active"> Telefone de: <strong id="nome-2" style="color: rgba(255, 255, 255, 0.92) ! important;"></strong></label>			
+								<p id="telefone-2" style="font-size: 1.5vw; font-weight: 600; color: rgba(255, 255, 255, 0.92) ! important;"></p>
+						   </div>
+							<!--<div style="padding: 0px ! important;" id="jogos-perdidos" class="col-md-6 col-xs-6 ">
+								<h1 id="h1-estatisticas" style="margin: 0px ! important; font-weight: 800 !important;">DIA?</h1>
+								<div class="field-wrap"> 
+									<input style="background-color: rgba(0, 0, 0, 0.41) ! important; border: medium none ! important;" name="confirmacao-jogo-dia" id="confirmacao-jogo-dia" maxlength="2" autocomplete="off" placeholder="00" required="true" type="text">
+								</div>
+							</div>
+							<div style="padding: 0px ! important;" id="jogos-perdidos" class="col-md-6 col-xs-6 ">
+								<h1 id="h1-estatisticas" style="margin: 0px ! important; font-weight: 800 !important;">HORA?</h1>
+								<div class="field-wrap"> 
+									<input style="background-color: rgba(0, 0, 0, 0.41) ! important; border: medium none ! important;" name="confirmacao-jogo-hora" id="confirmacao-jogo-hora" maxlength="2" autocomplete="off" placeholder="00" required="true" type="text">
+								</div>
+							</div>-->
+							<div style="padding: 0px ! important;" id="jogos-perdidos" class="col-md-4 col-xs-4 ">
+								<h1 id="h1-estatisticas" style="margin: 0px ! important; font-weight: 800 !important;">DIA?</h1>
+								<div class="field-wrap"> 
+									<input style="background-color: rgba(0, 0, 0, 0.41) ! important; border: medium none ! important;" name="confirmacao-jogo-dia" id="confirmacao-jogo-dia" maxlength="2" autocomplete="off" placeholder="Dia" required="true" type="text">
+								</div>
+							</div>
+							<div class="col-md-4 col-xs-4 " style="padding: 0px ! important;" id="jogos-perdidos">
+								<h1 id="h1-estatisticas" style="margin: 0px ! important; font-weight: 800 !important;">MÊS?</h1>
+								<div class="field-wrap"> 
+									<input placeholder="Mês" name="confirmacao-jogo-mes" id="confirmacao-jogo-mes" style="background-color: rgba(0, 0, 0, 0.41) ! important; border: medium none ! important;" maxlength="2" autocomplete="off" required="true" type="text">
+								</div>
+							</div>
+							<div style="padding: 0px ! important;" id="jogos-perdidos" class="col-md-4 col-xs-4 ">
+								<h1 id="h1-estatisticas" style="margin: 0px ! important; font-weight: 800 !important;">HORA?</h1>
+								<div class="field-wrap"> 
+									<input style="background-color: rgba(0, 0, 0, 0.41) ! important; border: medium none ! important;" name="confirmacao-jogo-hora" id="confirmacao-jogo-hora" maxlength="5" autocomplete="off" placeholder="Hora" required="true" type="text">
+								</div>
+							</div>
+							  <label class="active"> Endereço<span class="req">*</span></label>
+							  <input name="confirmacao-jogo-endereco" id="confirmacao-jogo-endereco" maxlength="40" autocomplete="off" placeholder="Endereço" required="" type="text">
+							  <label class="active"> Telefone para contato?<span class="req">*</span></label>
+							  <input name="telefone-contato" id="telefone-contato" maxlength="15" value="" onkeyup="mascara( this, mtel );" placeholder="(00) 0000-0000" required="" autocomplete="off" type="text">
+						   <!-- BOTÕES MODAL -->
+						   <div class="modal-footer">
+							<button id="marcar-jogo-final" type="submit" class="col-xs-4 button" style="float: right;">CONFIRMAR</button> 
+							</div>
+						</form>
+					 </div>
+				  </div>
+			   </div>
+			</div>
+		</div>
+		<!-- JOGOS P/ FINALIZAR -->
+		<div role="tabpanel" class="tab-pane fade" id="jogos-finalizar" aria-labelledby="profile-tab">
+			<h1>JOGOS PARA FINALIZAR</h1>
+			<section>
+				<div class="esconde" id="admin-finalizar-tbody">
+					<table class="table table-striped">
+					  <thead style="background-color: rgb(219, 219, 219); color: rgb(62, 62, 62);">
+						<tr>
+							<th>PERIODO</th>
+							<th>DATA</th>
+							<th>TIME 1</th>
+							<th>TIME 2</th>
+							<th>ESTADO</th>
+							<th></th>
+						</tr>
+					  </thead>
+					  <tbody id="admin-finalizar">
+					  </tbody>
+					</table>
+					<div style="background-color: rgb(204, 31, 31); width: 100%; height: 100%; padding: 20px; color: white; margin-bottom: 20px;" id="pagina-meus-jogos-erro4">Nenhum jogo encontrado...</div>
+				</div>
+			</section>
+			<!-- MODAL FINALIZAR JOGO -->
+			<div class="modal-finalizar modal fade" id="meuPerfil" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1">
+			   <div class="modal-dialog" role="document">
+				  <div class="modal-content">
+					 <!-- CABEÇALHO MODAL -->
+					 <div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h4 class="modal-title" id="myModalLabel1">FINALIZAR JOGO</h4>
+					 </div>
+					 <!-- CORPO DO MODAL -->
+					 <div class="modal-body">
+						<div style="display: none; width: 100%; height: 100%; padding: 20px; color: white; margin-bottom: 20px;" id="resultado-finalizar-jogo"></div>
+						<form id="finalizar-jogo-admin" name="finalizar-jogo-admin">
+						   <input name="acao" value="finalizar-jogo" type="hidden">
+						   <input id="jogo-id" type="hidden">
+							<div style="padding: 0px ! important;" class="col-md-6 col-xs-12">
+								<div style="float: left; width: 100%;" class="field-wrap">
+									<label style="font-size: 1.0vw;" class="active"> Telefone de: <strong id="nome-11" style="color: rgba(255, 255, 255, 0.92) ! important;"></strong></label>			
+									<p id="telefone-11" style="font-size: 1.5vw; font-weight: 600; color: rgba(255, 255, 255, 0.92) ! important;"></p>
+								</div>
+								<div style="padding-left: 0px !important; float: left;" id="jogos-perdidos" class="col-md-12 col-xs-12">
+									<h1 id="h1-estatisticas" style="margin: 0px ! important; font-weight: 800 !important;">GOLS?</h1>
+									<div class="field-wrap"> 
+										<input style="background-color: rgba(0, 0, 0, 0.41) ! important; border: medium none ! important;" name="gols-time-1" id="gols-time-1" maxlength="2" autocomplete="off" placeholder="Gols" required="true" type="text">
+									</div>
+								</div>
+								<div style="padding-left: 0px !important; float: left;" id="jogos-perdidos" class="col-md-12 col-xs-12">
+									<h1 id="h1-estatisticas" style="margin: 0px ! important; font-weight: 800 !important;">FALTAS COMETIDAS?</h1>
+									<div class="field-wrap"> 
+										<input style="background-color: rgba(0, 0, 0, 0.41) ! important; border: medium none ! important;" name="faltas-time-1" id="gols-time-1" maxlength="2" autocomplete="off" placeholder="Faltas" required="true" type="text">
+									</div>
+								</div>
+								<div style="padding-left: 0px !important; float: left;" id="jogos-perdidos" class="col-md-12 col-xs-12">
+									<h1 id="h1-estatisticas" style="margin: 0px ! important; font-weight: 800 !important;">IMPEDIMENTOS REALIZADOS?</h1>
+									<div class="field-wrap"> 
+										<input style="background-color: rgba(0, 0, 0, 0.41) ! important; border: medium none ! important;" name="impredimentos-time-1" id="gols-time-1" maxlength="2" autocomplete="off" placeholder="Impedimentos" required="true" type="text">
+									</div>
+								</div>
+							</div>
+							<div style="padding: 0px ! important;" class="col-md-6 col-xs-12">
+								<div style="float: right; width: 100%;" class="field-wrap">
+									<label style="font-size: 1.0vw;" class="active"> Telefone de: <strong id="nome-22" style="color: rgba(255, 255, 255, 0.92) ! important;"></strong></label>			
+									<p id="telefone-22" style="font-size: 1.5vw; font-weight: 600; color: rgba(255, 255, 255, 0.92) ! important;"></p>
+								</div>
+								<div style="padding-right: 0px !important; float: left;" id="jogos-perdidos" class="col-md-12 col-xs-12">
+									<h1 id="h1-estatisticas" style="margin: 0px ! important; font-weight: 800 !important;">GOLS?</h1>
+									<div class="field-wrap"> 
+										<input style="background-color: rgba(0, 0, 0, 0.41) ! important; border: medium none ! important;" name="gols-time-2" id="gols-time-1" maxlength="2" autocomplete="off" placeholder="Gols" required="true" type="text">
+									</div>
+								</div>
+								<div style="padding-right: 0px !important; float: left;" id="jogos-perdidos" class="col-md-12 col-xs-12">
+									<h1 id="h1-estatisticas" style="margin: 0px ! important; font-weight: 800 !important;">FALTAS COMETIDAS?</h1>
+									<div class="field-wrap"> 
+										<input style="background-color: rgba(0, 0, 0, 0.41) ! important; border: medium none ! important;" name="faltas-time-2" id="gols-time-1" maxlength="2" autocomplete="off" placeholder="Faltas" required="true" type="text">
+									</div>
+								</div>
+								<div style="padding-right: 0px !important; float: left;" id="jogos-perdidos" class="col-md-12 col-xs-12">
+									<h1 id="h1-estatisticas" style="margin: 0px ! important; font-weight: 800 !important;">IMPEDIMENTOS REALIZADOS?</h1>
+									<div class="field-wrap"> 
+										<input style="background-color: rgba(0, 0, 0, 0.41) ! important; border: medium none ! important;" name="impredimentos-time-2" id="gols-time-1" maxlength="2" autocomplete="off" placeholder="Impedimentos" required="true" type="text">
+									</div>
+								</div>
+							</div>
+							<!-- BOTÕES MODAL -->
+						   <div class="modal-footer">
+							<button id="finalizar-jogo" type="submit" class="col-xs-4 button" style="float: right;">FINALIZAR</button> 
+							</div>
+						</form>
+					 </div>
+				  </div>
+			   </div>
+			</div>
+		</div>
+		<!-- JOGOS FINALIZADOS -->
+		<div role="tabpanel" class="tab-pane fade" id="jogos-finalizados" aria-labelledby="profile-tab">
+			<h1>JOGOS PARA FINALIZAR</h1>
+			<section>
+				<div class="esconde" id="admin-finalizados-tbody">
+					<table class="table table-striped">
+					  <thead style="background-color: rgb(219, 219, 219); color: rgb(62, 62, 62);">
+						<tr>
+							<th>PERIODO</th>
+							<th>DATA</th>
+							<th>TIME 1</th>
+							<th>TIME 2</th>
+							<th>ESTADO</th>
+						</tr>
+					  </thead>
+					  <tbody id="admin-finalizados">
+					  </tbody>
+					</table>
+					<div style="background-color: rgb(204, 31, 31); width: 100%; height: 100%; padding: 20px; color: white; margin-bottom: 20px;" id="pagina-meus-jogos-erro5">Nenhum jogo encontrado...</div>
+				</div>
+			</section>
+		</div>
+	</div>
+</div>
+
+<script>
+/********************************************/
+/* INICIA O CARREGAMENTO DA PÁGINA
+/********************************************/
+$(document).ready(function(){
+	var meuForm = this;
+	var meuajax;
+	meuajax = $.param($(meuForm).serializeArray());
+	meuajax = meuajax+'&ID='+getCookie("ID")+'&acao=jogos-admin';
+	post = meuajax;
+	$.postJSON = function(url, data, func) { $.post(url+(url.indexOf("?") == -1 ? "?" : "&")+"callback=?", data, func, "json"); }
+	$.postJSON('./classes/login-e-registro.php', { ajax: meuajax }, resultado);
+});
+
+function atualizar_admin(){
+	var meuForm = this;
+	var meuajax;
+	meuajax = $.param($(meuForm).serializeArray());
+	meuajax = meuajax+'&ID='+getCookie("ID")+'&acao=jogos-admin';
+	post = meuajax;
+	$.postJSON = function(url, data, func) { $.post(url+(url.indexOf("?") == -1 ? "?" : "&")+"callback=?", data, func, "json"); }
+	$.postJSON('./classes/login-e-registro.php', { ajax: meuajax }, resultado);
+}
+
+function resultado(dados)
+{
+	if (dados.ok) {
+		$('#pagina-meus-jogos').removeClass('esconde');
+		$('#pagina-meus-jogos').addClass('mostra');
+		$('#admin-analisa-tbody').removeClass('esconde');
+		$('#admin-analisa-tbody').addClass('mostra');
+		$('#admin-finalizar-tbody').removeClass('esconde');
+		$('#admin-finalizar-tbody').addClass('mostra');
+		$('#admin-finalizados-tbody').removeClass('esconde');
+		$('#admin-finalizados-tbody').addClass('mostra');
+		
+		var i_confirmado = 0;
+		var i_analise = 0;
+		var i_finalizar = 0;
+		var i_finalizado = 0;
+		
+		for (key in dados.lista) {
+			var JOGO_ID = dados.lista[key]['JOGO_ID'];
+			var JOGO_DATA = dados.lista[key]['JOGO_DATA'];
+			var JOGO_PERIODO = dados.lista[key]['JOGO_PERIODO'];
+			var JOGO_TIME_1 = dados.lista[key]['JOGO_TIME_1'];
+			var JOGO_TIME_2 = dados.lista[key]['JOGO_TIME_2'];
+			var JOGO_TELEFONE_CONF = dados.lista[key]['JOGO_TELEFONE_CONF'];
+			var JOGO_APROVADO = dados.lista[key]['JOGO_APROVADO'];
+			var NOME_TIME_1 = dados.lista[key]['NOME_TIME_1'];
+			var NOME_TIME_2 = dados.lista[key]['NOME_TIME_2'];
+			var JOGO_TELEFONE_1 = dados.lista[key]['JOGO_TELEFONE_1'];
+			var JOGO_TELEFONE_2 = dados.lista[key]['JOGO_TELEFONE_2'];
+			var JOGO_DIA = dados.lista[key]['JOGO_DIA'];
+			var JOGO_MES = dados.lista[key]['JOGO_MES'];
+			var JOGO_HORA = dados.lista[key]['JOGO_HORA'];
+			var JOGO_ENDERECO = dados.lista[key]['JOGO_ENDERECO'];
+			var JOGO_TELEFONE_CONTATO = dados.lista[key]['JOGO_TELEFONE_CONTATO'];
+			var JOGO_CANCELADO = dados.lista[key]['JOGO_CANCELADO'];
+
+			if(!JOGO_DATA) {
+				JOGO_DATA = JOGO_DIA+'/'+JOGO_MES+'/2016 às '+JOGO_HORA;
+			} else {
+				var DATA = JOGO_DATA;
+				var DATA = DATA.split('-');
+				JOGO_DATA = DATA[2]+'/'+DATA[1]+'/'+DATA[0]+' às '+JOGO_HORA;
+			}
+			
+			/*if(JOGO_DATA > '14/04/2016')
+			if (Date.parse('25/03/2016') < Date.parse(DATA[2]+'/'+DATA[1]+'/'+DATA[0]))
+				alert('não passou');
+			else
+				alert('já passou');
+			*/
+			
+			if(JOGO_APROVADO == 2 && JOGO_CANCELADO < 1) {
+				$('#pagina-meus-jogos-erro3').removeClass('mostra');
+				$('#pagina-meus-jogos-erro3').addClass('esconde');
+				i_analise++
+				JOGO_APROVADO = '<td style="text-transform: uppercase; color: rgb(237, 196, 48);">EM ANÁLISE</td>';
+				//var html2 = '<tr class="analise-admin"><td>'+JOGO_PERIODO+'</td><td style="text-transform: capitalize !important;" ><span class="event" id="'+NOME_TIME_1+'" draggable="true">'+NOME_TIME_1+'</span></td><td style="text-transform: capitalize !important;" ><span class="event" id="'+NOME_TIME_2+'" draggable="true">'+NOME_TIME_2+'</span></td>'+JOGO_APROVADO+'<td><button class="col-xs-12 button" style="padding: 10px 0px; font-size: 1.6rem;" name="confirmar-dados" onclick="marcarJogo('+JOGO_ID+');">CONFIRMAR</button></td></tr>';
+				//var html2 = '<tr class="analise-admin"><td>'+JOGO_PERIODO+'</td><td style="text-transform: capitalize !important;" ><span class="event" id="'+NOME_TIME_1+'" draggable="true">'+NOME_TIME_1+'</span></td><td style="text-transform: capitalize !important;" ><span class="event" id="'+NOME_TIME_2+'" draggable="true">'+NOME_TIME_2+'</span></td>'+JOGO_APROVADO+'<td><button class="col-xs-12 button" style="padding: 10px 0px; font-size: 1.6rem;" name="confirmar-dados" onclick="marcarJogo('+JOGO_ID+');">CONFIRMAR</button></td></tr>';
+				//$('#admin-analisa').append(html2);
+				var html2 = '<tr class="analise-admin"><td>'+JOGO_PERIODO+'</td><td style="text-transform: capitalize !important;" >'+NOME_TIME_1+'</td><td style="text-transform: capitalize !important;" >'+NOME_TIME_2+'</td>'+JOGO_APROVADO+'<td><button class="col-xs-12 button" style="padding: 10px 0px; font-size: 1.6rem;" name="confirmar-dados" onclick="marcarJogo('+JOGO_ID+');">CONFIRMAR</button></td></tr>';
+				$(html2).insertBefore("#admin-analisa");
+			} else if(JOGO_APROVADO == 3 && JOGO_CANCELADO < 1) {
+				$('#pagina-meus-jogos-erro22').removeClass('mostra');
+				$('#pagina-meus-jogos-erro22').addClass('esconde');
+				i_confirmado++
+				JOGO_APROVADO = '<td style="text-transform: uppercase; color: rgb(26, 177, 136);">CONFIRMADO</td>';
+				var html = '<tr class="analise-admin"><td>'+JOGO_PERIODO+'</td><td style="text-transform: capitalize !important;" >'+NOME_TIME_1+'</td><td style="text-transform: capitalize !important;" >'+NOME_TIME_2+'</td><td>'+JOGO_DATA+'</td><td>'+JOGO_TELEFONE_1+' / '+JOGO_TELEFONE_2+'</td>'+JOGO_APROVADO+'<td><button onclick="jogoRealizado('+JOGO_ID+');" style="background-color: rgb(26, 177, 136) !important;" class="btn btn-sucess"><i style="color: white ! important;" class="fa fa-check fa-md"></i></button></td><td><button onclick="cancelarJogo('+JOGO_ID+');" class="btn btn-danger" ><i class="fa fa-trash-o fa-lg"></i></button></td></tr>';
+				$(html).insertBefore("#lista-jogos");
+			} else if(JOGO_APROVADO == 4 && JOGO_CANCELADO < 1) {
+				$('#pagina-meus-jogos-erro4').removeClass('mostra');
+				$('#pagina-meus-jogos-erro4').addClass('esconde');
+				i_finalizar++
+				JOGO_APROVADO = '<td style="text-transform: uppercase; color: rgb(237, 196, 48);">JOGO ENCERRADO</td>';
+				var html3 = '<tr class="analise-admin"><td>'+JOGO_PERIODO+'</td><td>'+JOGO_DATA+'</td><td style="text-transform: capitalize !important;" >'+NOME_TIME_1+'</td><td style="text-transform: capitalize !important;" >'+NOME_TIME_2+'</td>'+JOGO_APROVADO+'<td><button style="padding: 10px 0px; font-size: 1.6rem;" class="col-xs-12 button" name="confirmar-jogo" onclick="abre_modal_finalizar('+JOGO_ID+');">FINALIZAR</button></td></tr>';
+				$(html3).insertBefore("#admin-finalizar");
+			} else if(JOGO_APROVADO == 5 && JOGO_CANCELADO < 1) {
+				$('#pagina-meus-jogos-erro5').removeClass('mostra');
+				$('#pagina-meus-jogos-erro5').addClass('esconde');
+				i_finalizado++
+				JOGO_APROVADO = '<td style="text-transform: uppercase; color: rgb(26, 177, 136);">FINALIZADO</td>';
+				var html4 = '<tr class="analise-admin"><td>'+JOGO_PERIODO+'</td><td>'+JOGO_DATA+'</td><td style="text-transform: capitalize !important;" >'+NOME_TIME_1+'</td><td style="text-transform: capitalize !important;" >'+NOME_TIME_2+'</td>'+JOGO_APROVADO+'<td></td></tr>';
+				$(html4).insertBefore("#admin-finalizados");
+			} else if(JOGO_CANCELADO == 1) {
+				$('#pagina-meus-jogos-erro5').removeClass('mostra');
+				$('#pagina-meus-jogos-erro5').addClass('esconde');
+				i_finalizado++
+				JOGO_APROVADO = '<td style="text-transform: uppercase; color: rgb(255, 45, 0);">CANCELADO</td>';
+				var html4 = '<tr class="analise-admin"><td>'+JOGO_PERIODO+'</td><td>'+JOGO_DATA+'</td><td style="text-transform: capitalize !important;" >'+NOME_TIME_1+'</td><td style="text-transform: capitalize !important;" >'+NOME_TIME_2+'</td>'+JOGO_APROVADO+'<td></td></tr>';
+				$(html4).insertBefore("#admin-finalizados");
+			}
+		};
+	} else {
+		$("#pagina-meus-jogos-erro").css("display", "block");
+		$("#pagina-meus-jogos-erro").css("background-color", dados.color);
+		document.getElementById("pagina-meus-jogos-erro").innerHTML = dados.erro;
+		$("#pagina-meus-jogos-erro2").css("display", "block");
+		$("#pagina-meus-jogos-erro2").css("background-color", dados.color);
+		document.getElementById("pagina-meus-jogos-erro2").innerHTML = dados.erro;
+		/*$("#pagina-meus-jogos-erro3").css("display", "block");
+		$("#pagina-meus-jogos-erro3").css("background-color", dados.color);
+		document.getElementById("pagina-meus-jogos-erro3").innerHTML = dados.erro;*/
+		$("#pagina-meus-jogos-erro4").css("display", "block");
+		$("#pagina-meus-jogos-erro4").css("background-color", dados.color);
+		document.getElementById("pagina-meus-jogos-erro4").innerHTML = dados.erro;
+	}
+	$( ".jogos-analise" ).html( i_analise );
+	$( ".jogos-proximos" ).html( i_confirmado );
+	$( ".jogos-hoje" ).html( '0' );
+	$( ".jogos-finalizar" ).html( i_finalizar );
+	$( ".jogos-finalizados" ).html( i_finalizado );
+}
+
+/*$(function() { // when page loads
+	$("#escolherPeriodo li").on("click",function() { // when LI is clicked
+	  $(this)
+		.addClass("sel")
+		.siblings().removeClass("sel"); // Swap class
+	});
+});*/
+
+/********************************************/
+/* FUNÇÃO COLOCAR DADOS NO MODAL DE CONFIRMAR JOGO
+/********************************************/
+function marcarJogo(ID) { 
+	receberDadosJogo(ID);
+	$('.teste2').modal('show'); 
+}
+
+function receberDadosJogo(ID) {
+	meuajax = '&ID='+getCookie("ID")+'&acao=receber-dados&JOGO_ID='+ID;
+	post = meuajax;
+	$.postJSON = function(url, data, func) { $.post(url+(url.indexOf("?") == -1 ? "?" : "&")+"callback=?", data, func, "json"); }
+	//$.postJSON('./classes/login-e-registro.php', { ajax: meuajax }, resultado_dados_jogo);
+	$.postJSON('./classes/login-e-registro.php', { ajax: meuajax }, function(dados) { 
+		var ID = dados.lista['JOGO_ID'];
+		$( "#jogo-id" ).val(ID);
+		$( "#nome-1" ).html( dados.jgd1['NOME'] );
+		$( "#nome-2" ).html( dados.jgd2['NOME'] );
+		$( "#telefone-1" ).html( dados.lista['JOGO_TELEFONE_1'] );
+		$( "#telefone-2" ).html( dados.lista['JOGO_TELEFONE_2'] );
+		$( "#confirmacao-jogo-dia" ).val('');
+		$( "#confirmacao-jogo-hora" ).val('');
+		$( "#confirmacao-jogo-mes" ).val('');
+		$( "#confirmacao-jogo-endereco" ).val('');
+		$(':input','#confirmar-jogo-admin').not(':button, :submit, :reset, :hidden').val('').removeAttr('checked').removeAttr('selected');
+	});
+}
+
+/********************************************/
+/* FUNÇÕES PARA EXECUTAR OS BOTOES DE MUDAR JOGOS DE ESTADO
+/********************************************/
+function jogoRealizado(ID) {
+	if (confirm('Você tem certeza?')) {
+		meuajax = '&ID='+getCookie("ID")+'&acao=jogo-realizado&JOGO_ID='+ID;
+		post = meuajax;
+		$.postJSON = function(url, data, func) { $.post(url+(url.indexOf("?") == -1 ? "?" : "&")+"callback=?", data, func, "json"); }
+		$.postJSON('./classes/login-e-registro.php', { ajax: meuajax }, function(dados) { 
+			if (dados.ok) {
+				$("#resultado-botoes-jogo-confirmado").css("display", "block");
+				$("#resultado-botoes-jogo-confirmado").css("background-color", dados.color);
+				document.getElementById("resultado-botoes-jogo-confirmado").innerHTML = dados.ok;
+				atualizar_admin()
+			} else {
+				$("#resultado-botoes-jogo-confirmado").css("display", "block");
+				$("#resultado-botoes-jogo-confirmado").css("background-color", dados.color);
+				document.getElementById("resultado-botoes-jogo-confirmado").innerHTML = dados.erro;
+			}
+		});
+	}
+}
+
+function cancelarJogo(ID) {
+	if (confirm('Você tem certeza?')) {
+		meuajax = '&ID='+getCookie("ID")+'&acao=jogo-cancelar&JOGO_ID='+ID;
+		post = meuajax;
+		$.postJSON = function(url, data, func) { $.post(url+(url.indexOf("?") == -1 ? "?" : "&")+"callback=?", data, func, "json"); }
+		$.postJSON('./classes/login-e-registro.php', { ajax: meuajax }, function(dados) { 
+			if (dados.ok) {
+				$("#resultado-botoes-jogo-confirmado").css("display", "block");
+				$("#resultado-botoes-jogo-confirmado").css("background-color", dados.color);
+				document.getElementById("resultado-botoes-jogo-confirmado").innerHTML = dados.ok;
+				atualizar_admin()
+			} else {
+				$("#resultado-botoes-jogo-confirmado").css("display", "block");
+				$("#resultado-botoes-jogo-confirmado").css("background-color", dados.color);
+				document.getElementById("resultado-botoes-jogo-confirmado").innerHTML = dados.erro;
+			}
+		});
+	}
+}
+
+$("#confirmar-jogo-admin").submit(function (_event_) {
+	_event_.preventDefault();
+	var meuForm = this;
+	var meuajax;
+	var JOGO_ID = $("#jogo-id").val();
+	meuajax = $.param($(meuForm).serializeArray());
+	meuajax = meuajax+'&ID='+getCookie("ID")+'&JOGO_ID='+JOGO_ID;
+	post = meuajax;
+	$.postJSON = function(url, data, func) { $.post(url+(url.indexOf("?") == -1 ? "?" : "&")+"callback=?", data, func, "json"); }
+	$.postJSON('./classes/login-e-registro.php', { ajax: meuajax }, function(dados) {
+		if (dados.ok) {
+			$("#resultado-confirmar-jogo").css("display", "block");
+			$("#resultado-confirmar-jogo").css("background-color", dados.color);
+			document.getElementById("resultado-confirmar-jogo").innerHTML = dados.ok;
+			atualizar_admin()
+		} else {
+			$("#resultado-confirmar-jogo").css("display", "block");
+			$("#resultado-confirmar-jogo").css("background-color", dados.color);
+			document.getElementById("resultado-confirmar-jogo").innerHTML = dados.erro;
+		}
+	});
+});
+
+function abre_modal_finalizar(ID) { 
+	colocaDadosFinalizar(ID);
+	$('.modal-finalizar').modal('show'); 
+}
+
+function colocaDadosFinalizar(ID) {
+	meuajax = '&ID='+getCookie("ID")+'&acao=receber-dados&JOGO_ID='+ID;
+	post = meuajax;
+	$.postJSON = function(url, data, func) { $.post(url+(url.indexOf("?") == -1 ? "?" : "&")+"callback=?", data, func, "json"); }
+	$.postJSON('./classes/login-e-registro.php', { ajax: meuajax }, function(dados) { 
+		var ID = dados.lista['JOGO_ID'];
+		$( "#jogo-id" ).val(ID);
+		$( "#nome-11" ).html( dados.jgd1['NOME'] );
+		$( "#nome-22" ).html( dados.jgd2['NOME'] );
+		$( "#telefone-11" ).html( dados.lista['JOGO_TELEFONE_1'] );
+		$( "#telefone-22" ).html( dados.lista['JOGO_TELEFONE_2'] );
+	});
+}
+
+$("#finalizar-jogo-admin").submit(function (_event_) {
+	_event_.preventDefault();
+	var meuForm = this;
+	var meuajax;
+	var JOGO_ID = $("#jogo-id").val();
+	meuajax = $.param($(meuForm).serializeArray());
+	meuajax = meuajax+'&ID='+getCookie("ID")+'&JOGO_ID='+JOGO_ID;
+	post = meuajax;
+	$.postJSON = function(url, data, func) { $.post(url+(url.indexOf("?") == -1 ? "?" : "&")+"callback=?", data, func, "json"); }
+	$.postJSON('./classes/login-e-registro.php', { ajax: meuajax }, function(dados) {
+		if (dados.ok) {
+			$("#resultado-finalizar-jogo").css("display", "block");
+			$("#resultado-finalizar-jogo").css("background-color", dados.color);
+			document.getElementById("resultado-finalizar-jogo").innerHTML = dados.ok;
+			atualizar_admin()
+		} else {
+			$("#resultado-finalizar-jogo").css("display", "block");
+			$("#resultado-finalizar-jogo").css("background-color", dados.color);
+			document.getElementById("resultado-finalizar-jogo").innerHTML = dados.erro;
+		}
+	});
+});
+
+/********************************************/
+/* FUNÇÃO PARA MARCAR OS JOGOS
+/********************************************/
+$('#marcar-jogo-final').submit(function (_event_) {
+	_event_.preventDefault();
+	var option = $("#escolherPeriodo li.sel").data("option");
+	
+	if(!option) {
+		$("#resultado-marcar-jogo").css("display", "block");
+		$("#resultado-marcar-jogo").css("background-color", "rgb(204, 31, 31)");
+		document.getElementById("resultado-marcar-jogo").innerHTML = "Selecione o período disponível para jogar.";
+	} else {
+
+		var meuForm = this;
+		var meuajax;
+		meuajax = $.param($(meuForm).serializeArray());
+		meuajax = meuajax+'&ID='+getCookie("ID")+'&PER='+option;
+		post = meuajax;
+		$.postJSON = function(url, data, func) { $.post(url+(url.indexOf("?") == -1 ? "?" : "&")+"callback=?", data, func, "json"); }
+		$.postJSON('./classes/login-e-registro.php', { ajax: meuajax }, resultado2);
+	}
+	
+});
+
+function resultado2(dados)
+{
+	if (dados.ok) {
+		$("#resultado-marcar-jogo").css("display", "block");
+		$("#resultado-marcar-jogo").css("background-color", dados.color);
+		document.getElementById("resultado-marcar-jogo").innerHTML = dados.ok;
+		atualizar();
+	} else {
+		$("#resultado-marcar-jogo").css("display", "block");
+		$("#resultado-marcar-jogo").css("background-color", dados.color);
+		document.getElementById("resultado-marcar-jogo").innerHTML = dados.erro;
+		atualizar();
+	}
+}
+</script>

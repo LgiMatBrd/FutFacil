@@ -1,0 +1,419 @@
+<style>
+.meus-jogos td {
+    background-color: rgba(255, 255, 255, 0.09);
+    padding: 1% !important;
+    /*text-align: center;*/
+    font-weight: 600;
+    text-transform: lowercase;
+}
+</style>
+<div class="col-xs-10 box-conteudo">
+	<div id="myTabContent" class="tab-content">
+		<!-- MONTE O SEU TIME -->
+		<div role="tabpanel" class="tab-pane fade active in" id="home" aria-labelledby="home-tab">
+			<h1>MONTE O SEU TIME</h1>
+			<div id="campo-futebol" class="col-md-7 col-xs-12 box-conteudo campo-futebol">
+				<div id="area" class="col-xs-8 box-conteudo campo-futebol">
+					<div id="area-goleiro" class="col-xs-8 box-conteudo campo-futebol">
+					</div>
+				</div>
+				<div id="meio-campo" class="col-xs-3 box-conteudo campo-futebol">
+				</div>
+			</div>
+			<!-- CAMPO PARA ADICIONAR UM JOGADOR -->
+			<div id="pai-adiciona-jogador" class="col-md-5 col-xs-12 ">
+				<div class="col-xs-12 box-conteudo" id="adiciona-jogador">
+					<div id="login">
+						<h1>ADICIONE UM JOGADOR</h1>
+						<p>Ao adicionar um jogador lembre-se de preencher as informações corretamente, é uma parte fundamental!</p>
+						<br/>
+						<div class="esconde" id="resultado-editar-jogador"></div>
+						<br/>
+						<form id="editar-jogador" name="editar-jogador">
+							<input type="hidden" name="acao" value="editar-jogador">
+							<input id="edita-posicao-jogador" name="posicao" value="" type="hidden">
+							<div id="pai-edita-nome-jogador" class="field-wrap">
+								<label class="active"> Nome do Jogador<span class="req">*</span></label><input id="edita-nome-jogador" name="nome_jogador" value="" autocomplete="off" type="text">
+							</div>
+							<div id="pai-edita-telefone-jogador" class="field-wrap">
+								<label class="active"> Telefone do Jogador<span class="req">*</span></label><input name="telefone_jogador" type="text" id="edita-telefone-jogador" maxlength="15" value="(00) 0000-0000" onkeyup="mascara( this, mtel );" required autocomplete="off" />
+							</div>
+							<button class="col-xs-4 button" type="submit" style="float: right;" name="editar-jogador" >SALVAR</button>
+						</form>
+					</div>
+				</div>
+			</div>
+			<!-- MENSAGEM ANTES DE CLICAR EM UM JOGADOR -->
+			<div id="mensagem-adiciona-jogador" class="col-xs-5">
+				<div class="col-xs-12 box-conteudo" id="adiciona-jogador">
+					<div id="login">
+						<h1><i style="margin: 0px 10px 0px 0px; color: rgb(184, 205, 29);" class="fa fa-plus"></i>ADICIONE UM JOGADOR</h1>
+						<p>Para adicionar um jogador clique no icone do mapa ao lado referente a posição que o mesmo ira exercer no jogo.</p>
+						<br/>
+					</div>
+				</div>
+			</div>
+			<div style="clear: both;" id="codigo-marcar-jogo"></div>
+		</div>
+		<!-- BOX 2 -->
+		<div role="tabpanel" class="tab-pane fade" id="profile" aria-labelledby="profile-tab">
+			<h1>MEUS JOGOS <!--<br /><small>AQUI ESTÃO SEUS PRÓXIMOS JOGOS MARCADOS</small>--></h1>
+			<section>
+            <div style="display: none; width: 100%; height: 100%; padding: 20px; color: white; margin-bottom: 20px;" id="pagina-meus-jogos-erro"></div>
+			<div class="esconde" id="pagina-meus-jogos">
+				<table class="table table-striped">
+				  <thead style="background-color: rgb(219, 219, 219); color: rgb(62, 62, 62);">
+					<tr>
+						<th>PERIODO</th>
+						<th>DATA</th>
+						<th>ENDEREÇO</th>
+						<th>TELEFONE P/ CONTATO</th>
+						<th>STATUS</th>
+					</tr>
+				  </thead>
+				  <tbody id="lista-jogos">
+				  </tbody>
+				</table>
+			</div>
+			</section>
+		</div>
+		<!-- BOX 3 -->
+		<div role="tabpanel" class="tab-pane fade" id="profile1" aria-labelledby="profile1-tab">
+			<h1>MINHAS ESTÁTISTICAS <!--<br /><small>AQUI ESTÃO SEUS PRÓXIMOS JOGOS MARCADOS</small>--></h1>
+			<div id="pai-estatisticas-ganhos" class="col-md-6 col-xs-12 " style="display: block ! important; padding: 2px ! important;">
+				<div id="estatisticas-ganhos" class="col-xs-12 box-conteudo">
+					<div id="jogos-ganhos">
+						<h1 id="h1-estatisticas" style="margin: 0px ! important; font-weight: 800 !important;">JOGOS GANHOS</h1><h1 class="jogos-ganhos" style="border: medium none ! important; font-size: 75px; text-align: center; margin: 0px 40px; font-weight: 700; color: rgb(132, 204, 73);">0</h1>
+					</div>
+					<div style="padding: 0px ! important;" id="jogos-perdidos" class="col-md-6 col-xs-6 ">
+						<h1 id="h1-estatisticas" style="margin: 0px ! important; font-weight: 800 !important;">GOLS MARCADOS</h1><h1 style="border: medium none ! important; font-size: 50px; text-align: center; margin: 0px 40px; font-weight: 300; color: rgb(132, 204, 73);" class="jogos-perdidos">0</h1>
+					</div>
+					<div style="padding: 0px ! important;" id="jogos-perdidos" class="col-md-6 col-xs-6 ">
+						<h1 id="h1-estatisticas" style="margin: 0px ! important; font-weight: 800 !important;">FALTAS SOFRIDAS</h1><h1 style="border: medium none ! important; font-size: 50px; text-align: center; margin: 0px 40px; font-weight: 300; color: rgb(132, 204, 73);" class="jogos-perdidos">0</h1>
+					</div>
+				</div>
+			</div>
+			<div id="pai-estatisticas-ganhos" class="col-md-6 col-xs-12 " style="display: block ! important; padding: 2px ! important;">			
+				<div id="estatisticas-perdas" class="col-xs-12 box-conteudo">
+					<div id="jogos-perdidos">
+						<h1 id="h1-estatisticas" style="margin: 0px ! important; font-weight: 800 !important;">JOGOS PERDIDOS<small>/EMPATADOS</small></h1><h1 style="border: medium none ! important; font-size: 75px; text-align: center; margin: 0px 40px; font-weight: 700; color: rgb(204, 73, 73);" class="jogos-perdidos">0<small id="h1-estatisticas" style="color: rgb(219, 219, 92); font-size: 25px; font-weight: 200 ! important;">/0</small></h1>
+					</div>
+					<div style="padding: 0px ! important;" id="jogos-perdidos" class="col-md-6 col-xs-6 ">
+						<h1 id="h1-estatisticas" style="margin: 0px ! important; font-weight: 800 !important;">GOLS SOFRIDOS</h1><h1 style="border: medium none ! important; font-size: 50px; text-align: center; margin: 0px 40px; font-weight: 300; color: rgb(204, 73, 73);" class="jogos-perdidos">0</h1>
+					</div>
+					<div style="padding: 0px ! important;" id="jogos-perdidos" class="col-md-6 col-xs-6 ">
+						<h1 id="h1-estatisticas" style="margin: 0px ! important; font-weight: 800 !important;">FALTAS COMETIDAS</h1><h1 style="border: medium none ! important; font-size: 50px; text-align: center; margin: 0px 40px; font-weight: 300; color: rgb(204, 73, 73);" class="jogos-perdidos">0</h1>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+/********************************************/
+/* INICIA O CARREGAMENTO DA PÁGINA
+/********************************************/
+Jogadores();
+$('#codigo-marcar-jogo').load('includes/logado/codigo-marcar-jogo.html');
+/********************************************/
+/* FUNÇÃO QUE ATUALIZA OS DADOS 
+/********************************************/
+function atualizar() {
+	var div = document.getElementById("GL");
+	div.parentNode.removeChild(div);
+	var div = document.getElementById("LE");
+	div.parentNode.removeChild(div);
+	var div = document.getElementById("MC");
+	div.parentNode.removeChild(div);
+	var div = document.getElementById("LD");
+	div.parentNode.removeChild(div);
+	var div = document.getElementById("AE");
+	div.parentNode.removeChild(div);
+	var div = document.getElementById("AC");
+	div.parentNode.removeChild(div);
+	var div = document.getElementById("AD");
+	div.parentNode.removeChild(div);
+	Jogadores();
+}
+
+/********************************************/
+/* FAZ O REQUEST PARA O PHP
+/********************************************/
+var post;
+var dados = {};
+function Jogadores(id) {
+	if(id) {
+		var id = '&ID='+id;
+	} else {
+		var id = '&ID='+getCookie("ID");
+	}
+	
+	action = './classes/login-e-registro.php';
+	var meuajax;
+	meuajax = 'acao=query_jogadores'+id;
+	post = meuajax;
+	$.postJSON = function(url, data, func) { $.post(url+(url.indexOf("?") == -1 ? "?" : "&")+"callback=?", data, func, "json"); }
+	$.postJSON(action, { ajax: meuajax }, Resultado);
+	
+	function Resultado(dados)
+	{
+		montaTime(dados.ok);
+	}
+}
+
+/********************************************/
+/* GRAVA OS JOGADORES EM UMA ARRAY
+/********************************************/
+function montaTime(dados) {
+	var camisa = './imagens/camisa.png';
+	var jogadores = {
+		'GL' : {
+			'IMAGEM' : camisa,
+			'WIDTH' : 'width: 85px;',
+			'HEIGHT' : 'height: 85px;',
+			'LEFT' : 'margin-left: 5%;',
+			'TOP' : 'margin-top: 0;',
+			'POSITION' : 'position: absolute;',
+			'Z-INDEX' : 'z-index: 999 !important;',
+			'NOME' : dados.GL.JOGADOR_NOME,
+			'TELEFONE' : dados.GL.JOGADOR_TELEFONE,
+			'POSICAO_SIGLA' : dados.GL.JOGADOR_POS,
+			'POSICAO' : dados.GL.JOGADOR_POS
+		},
+		'LE' : {
+			'IMAGEM' : camisa,
+			'WIDTH' : 'width: 85px;',
+			'HEIGHT' : 'height: 85px;',
+			'LEFT' : 'margin-left: -40%;',
+			'TOP' : 'margin-top: 35%;',
+			'POSITION' : 'position: absolute;',
+			'Z-INDEX' : 'z-index: 999 !important;',
+			'NOME' : dados.LE.JOGADOR_NOME,
+			'TELEFONE' : dados.LE.JOGADOR_TELEFONE,
+			'POSICAO_SIGLA' : dados.LE.JOGADOR_POS,
+			'POSICAO' : dados.LE.JOGADOR_POS
+		},
+		'MC' : {
+			'IMAGEM' : camisa,
+			'WIDTH' : 'width: 85px;',
+			'HEIGHT' : 'height: 85px;',
+			'LEFT' : 'margin-left: 5%;',
+			'TOP' : 'margin-top: 37.5%;',
+			'POSITION' : 'position: absolute;',
+			'Z-INDEX' : 'z-index: 999 !important;',
+			'NOME' : dados.MC.JOGADOR_NOME,
+			'TELEFONE' : dados.MC.JOGADOR_TELEFONE,
+			'POSICAO_SIGLA' : dados.MC.JOGADOR_POS,
+			'POSICAO' : dados.MC.JOGADOR_POS
+		},
+		'LD' : {
+			'IMAGEM' : camisa,
+			'WIDTH' : 'width: 85px;',
+			'HEIGHT' : 'height: 85px;',
+			'LEFT' : 'margin-left: 45%;',
+			'TOP' : 'margin-top: 35%;',
+			'POSITION' : 'position: absolute;',
+			'Z-INDEX' : 'z-index: 999 !important;',
+			'NOME' : dados.LD.JOGADOR_NOME,
+			'TELEFONE' : dados.LD.JOGADOR_TELEFONE,
+			'POSICAO_SIGLA' : dados.LD.JOGADOR_POS,
+			'POSICAO' : dados.LD.JOGADOR_POS
+		},
+		'AE' : {
+			'IMAGEM' : camisa,
+			'WIDTH' : 'width: 85px;',
+			'HEIGHT' : 'height: 85px;',
+			'LEFT' : 'margin-left: -50%;',
+			'TOP' : 'margin-top: 70%;',
+			'POSITION' : 'position: absolute;',
+			'Z-INDEX' : 'z-index: 999 !important;',
+			'NOME' : dados.AE.JOGADOR_NOME,
+			'TELEFONE' : dados.AE.JOGADOR_TELEFONE,
+			'POSICAO_SIGLA' : dados.AE.JOGADOR_POS,
+			'POSICAO' : dados.AE.JOGADOR_POS
+		},
+		'AC' : {
+			'IMAGEM' : camisa,
+			'WIDTH' : 'width: 85px;',
+			'HEIGHT' : 'height: 85px;',
+			'LEFT' : 'margin-left: 5%;',
+			'TOP' : 'margin-top: 80%;',
+			'POSITION' : 'position: absolute;',
+			'Z-INDEX' : 'z-index: 999 !important;',
+			'NOME' : dados.AC.JOGADOR_NOME,
+			'TELEFONE' : dados.AC.JOGADOR_TELEFONE,
+			'POSICAO_SIGLA' : dados.AC.JOGADOR_POS,
+			'POSICAO' : dados.AC.JOGADOR_POS
+		},
+		'AD' : {
+			'IMAGEM' : camisa,
+			'WIDTH' : 'width: 85px;',
+			'HEIGHT' : 'height: 85px;',
+			'LEFT' : 'margin-left: 55%;',
+			'TOP' : 'margin-top: 70%;',
+			'POSITION' : 'position: absolute;',
+			'Z-INDEX' : 'z-index: 999 !important;',
+			'NOME' : dados.AD.JOGADOR_NOME,
+			'TELEFONE' : dados.AD.JOGADOR_TELEFONE,
+			'POSICAO_SIGLA' : dados.AD.JOGADOR_POS,
+			'POSICAO' : dados.AD.JOGADOR_POS
+		}
+	};
+
+	/********************************************/
+	/* IMPRIME OS JOGADORES NA TELA
+	/********************************************/
+	for (key in jogadores) {
+		var styles = jogadores[key]['WIDTH'] + ' ' + jogadores[key]['HEIGHT'] + ' ' + jogadores[key]['LEFT'] + ' ' + jogadores[key]['TOP'] + ' ' + jogadores[key]['POSITION'] + ' ' + jogadores[key]['Z-INDEX'];
+		var script = "<script>$('#" + jogadores[key]['POSICAO_SIGLA'] + "').popover()</\script>";
+		var parametros = "'" + jogadores[key]['POSICAO_SIGLA'] + "','" + jogadores[key]['NOME'] + "','" + jogadores[key]['TELEFONE'] + "'";
+		var html = '<a id="' + jogadores[key]['POSICAO_SIGLA'] + '" class="btn" onclick="adiciona_jogador(' + parametros + ')" data-html="true" data-content="<b>NOME:</b> ' + jogadores[key]['NOME'] + '<br> <b>TELEFONE:</b> ' + jogadores[key]['TELEFONE'] + '<br> <b>POSIÇÃO:</b> ' + jogadores[key]['POSICAO'] + '" rel="icone_jogador" data-placement="bottom" data-original-title="Informações do Jogador" data-trigger="hover" style="' + styles + '"><img id="icone-jogador" alt="icone-jogador" src="' + jogadores[key]['IMAGEM'] + '" class="img-circle" /></a>' + script;
+		$(html).insertBefore("#area-goleiro");
+	};
+}
+</script><script>
+/********************************************/
+/* ESCONDE E MOSTRA O CAMPO PARA ADC. JOGADOR
+/********************************************/
+$(document).ready(function(){
+	$('#pai-adiciona-jogador').hide();
+	$('#mensagem-adiciona-jogador').show();
+});
+
+function adiciona_jogador(sigla,nome,telefone) {
+
+	$('html, body').animate({
+		scrollTop: $("#mensagem-adiciona-jogador").offset().top
+	}, 300);
+
+	// PREENCHE AS VARIAVEIS PARA EVITAR PROBLEMAS
+	if ( nome == '' || telefone == '') {
+		nome = 'NENHUM';
+		telefone = '(00) 0000-0000';
+	}
+	// SETA NOS INPUTS OS DADOS DO JOGADOR SELECIONADO
+	document.getElementById("edita-posicao-jogador").value = sigla;
+	document.getElementById("edita-nome-jogador").value = nome;
+	document.getElementById("edita-telefone-jogador").value = telefone;
+	// MOSTRA OS CAMPOS PARA EDIÇÃO
+	$('#pai-adiciona-jogador').show();
+	$('#mensagem-adiciona-jogador').hide();
+}
+
+/********************************************/
+/* FUNÇÃO PARA SALVAR A EDIÇÃO DOS JOGADORES
+/********************************************/
+$("#editar-jogador").submit(function (_event_) {
+	_event_.preventDefault();
+	var meuForm = this;
+	var meuajax;
+	meuajax = $.param($(meuForm).serializeArray());
+	meuajax = meuajax+'&ID='+getCookie("ID");
+	post = meuajax;
+	$.postJSON = function(url, data, func) { $.post(url+(url.indexOf("?") == -1 ? "?" : "&")+"callback=?", data, func, "json"); }
+	$.postJSON('./classes/login-e-registro.php', { ajax: meuajax }, resultado);
+});
+
+function resultado(dados)
+{
+	if (dados.ok) {
+		$('#resultado-editar-jogador').removeClass('esconde');
+		$('#resultado-editar-jogador').addClass('mostra');
+		document.getElementById("resultado-editar-jogador").innerHTML = dados.ok;
+		atualizar();
+	} else {
+		alert(dados.erro);
+	}
+}
+
+
+/********************************************/
+/* PÁGINA MEUS JOGOS
+/********************************************/
+$(document).ready(function(){
+	var meuForm = this;
+	var meuajax;
+	meuajax = $.param($(meuForm).serializeArray());
+	meuajax = meuajax+'&ID='+getCookie("ID")+'&acao=meusjogos';
+	post = meuajax;
+	$.postJSON = function(url, data, func) { $.post(url+(url.indexOf("?") == -1 ? "?" : "&")+"callback=?", data, func, "json"); }
+	$.postJSON('./classes/login-e-registro.php', { ajax: meuajax }, resultado);
+});
+
+function resultado(dados)
+{
+	if (dados.ok) {
+		console.dir(dados.lista);
+		$('#pagina-meus-jogos').removeClass('esconde');
+		$('#pagina-meus-jogos').addClass('mostra');
+		
+		/********************************************/
+		/* IMPRIME A LISTA DOS SEUS JOGOS NA TELA
+		/********************************************/
+		//$("#lista-jogoss").html("");
+		for (key in dados.lista) {
+			var JOGO_ID = dados.lista[key]['JOGO_ID'];
+			var JOGO_DATA = dados.lista[key]['JOGO_DATA'];
+			var JOGO_PERIODO = dados.lista[key]['JOGO_PERIODO'];
+			var JOGO_TIME_1 = dados.lista[key]['JOGO_TIME_1'];
+			var JOGO_TIME_2 = dados.lista[key]['JOGO_TIME_2'];
+			var JOGO_TELEFONE_CONF = dados.lista[key]['JOGO_TELEFONE_CONF'];
+			var JOGO_APROVADO = dados.lista[key]['JOGO_APROVADO'];
+			var NOME_TIME_1 = dados.lista[key]['NOME_TIME_1'];
+			var NOME_TIME_2 = dados.lista[key]['NOME_TIME_2'];
+			var JOGO_TELEFONE_1 = dados.lista[key]['JOGO_TELEFONE_1'];
+			var JOGO_TELEFONE_2 = dados.lista[key]['JOGO_TELEFONE_2'];
+			var JOGO_DIA = dados.lista[key]['JOGO_DIA'];
+			var JOGO_MES = dados.lista[key]['JOGO_MES'];
+			var JOGO_HORA = dados.lista[key]['JOGO_HORA'];
+			var JOGO_ENDERECO = dados.lista[key]['JOGO_ENDERECO'];
+			var JOGO_TELEFONE_CONTATO = dados.lista[key]['JOGO_TELEFONE_CONTATO'];
+			var JOGO_CANCELADO = dados.lista[key]['JOGO_CANCELADO'];
+			
+			if(!JOGO_DATA) {
+				JOGO_DATA = 'VÁZIO';
+			} else {
+				var DATA = JOGO_DATA;
+				var DATA = DATA.split('-');
+				JOGO_DATA = DATA[2]+'/'+DATA[1]+'/'+DATA[0]+' às '+JOGO_HORA;
+			}
+			
+			if(!JOGO_TELEFONE_CONTATO) {
+				JOGO_TELEFONE_CONTATO = 'VÁZIO';
+			}
+			
+			if(!JOGO_ENDERECO) {
+				JOGO_ENDERECO = '<td>vázio</td>';
+			} else {
+				JOGO_ENDERECO = '<td style="text-transform: capitalize !important;">'+JOGO_ENDERECO+'</td>';
+			}
+			
+			if(JOGO_APROVADO == 1) {
+				JOGO_APROVADO = '<td style="color: rgb(237, 61, 48); text-transform: uppercase !important;">PROCURANDO...</td>';
+			} else if(JOGO_APROVADO == 2) {
+				JOGO_APROVADO = '<td style="color: rgb(237, 196, 48); text-transform: uppercase !important;">EM ANÁLISE</td>';
+			} else if(JOGO_APROVADO == 3) {
+				JOGO_APROVADO = '<td style="color: rgb(26, 177, 136); text-transform: uppercase !important;">CONFIRMADO</td>';
+			} else if(JOGO_APROVADO == 4) {
+				JOGO_APROVADO = '<td style="color: rgb(26, 177, 136); text-transform: uppercase !important;">AGUARDANDO RESULTADO DO JOGO</td>';
+			} else if(JOGO_APROVADO == 5) {
+				JOGO_APROVADO = '<td style="color: rgb(26, 177, 136); text-transform: uppercase !important;">FINALIZADO</td>';
+			} else {
+				JOGO_APROVADO = '<td style="rgb(237, 61, 48)"; text-transform: uppercase !important;">DESCONHECIDO</td>';
+			}
+			if(JOGO_CANCELADO == 1) {
+				JOGO_APROVADO = '<td style="text-transform: uppercase; color: rgb(255, 45, 0);">CANCELADO</td>';
+			}
+			
+			var html = '<tr class="meus-jogos"><td style="text-transform: uppercase;">'+JOGO_PERIODO+'</td><td>'+JOGO_DATA+'</td>'+JOGO_ENDERECO+'<td>'+JOGO_TELEFONE_CONTATO+'</td>'+JOGO_APROVADO+'</tr>';
+			$(html).insertBefore("#lista-jogos");
+		};
+	} else {
+		$("#pagina-meus-jogos-erro").css("display", "block");
+		$("#pagina-meus-jogos-erro").css("background-color", dados.color);
+		document.getElementById("pagina-meus-jogos-erro").innerHTML = dados.erro;
+	}
+}
+
+</script>

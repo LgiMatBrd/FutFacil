@@ -1,0 +1,168 @@
+<nav class="navbar navbar-inverse">
+  <div class="col-xs-1"></div>
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <!--<div class="navbar-header">-->
+    <div style="width: 50%; float: right;" class="navbar-header">
+	  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-2" aria-expanded="false" aria-controls="navbar-collapse-2">
+		<span class="sr-only">Toggle navigation</span>
+		<span class="icon-bar"></span>
+		<span class="icon-bar"></span>
+		<span class="icon-bar"></span>
+	  </button>
+    </div>
+    <!--<a class="navbar-brand" href="#">-->
+    <a style="width: 10% ! important;" class="navbar-brand" href="#">
+		<img src="http://localhost/futfacil/imagens/logo-padrao-mini.png" style="height: auto ! important; width: 45px; padding: 0px ! important; margin-top: -10px;">
+	</a>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <!--<div class="collapse navbar-collapse" id="navbar-collapse-1">-->
+    <div style="width: 100%;" aria-expanded="true" class="navbar-collapse collapse" id="navbar-collapse-2">
+     
+      <ul class="nav navbar-nav navbar-left">
+        <li class="active"><a href="#home" id="home-tab" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="true">Inicio</a></li>
+        <li><a href="#profile" id="profile-tab" role="tab" data-toggle="tab" aria-controls="profile" >Jogos p/ Análise</a></li>
+        <li><a href="#jogos-finalizar" id="jogos-finalizar-tab" role="tab" data-toggle="tab" aria-controls="jogos-finalizar" >Jogos p/ Finalizar</a></li>
+        <li><a href="#jogos-finalizados" id="jogos-finalizados-tab" role="tab" data-toggle="tab" aria-controls="jogos-finalizados" >Jogos Finalizados</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right hidden-xs">
+        <li class="dropdown">
+          <a id="nome-capitao" style="cursor: pointer; cursor: hand;" class="dropdown-toggle" data-toggle="dropdown"></a>
+          <ul class="dropdown-menu">
+            <li><a style="cursor: pointer; cursor: hand;" onclick="modalPerfil();" >Meu Perfil</a></li>
+            <li class="divider"></li>
+            <!--<li>
+			<form id="sair" name="sair" action="./classes/login-e-registro.php" method="post">
+				<input type="hidden" name="acao" value="sair">
+				<button name="sair" class="button button-block"/>Sair</button>
+			</form>
+			</li>-->
+			<li><a style="cursor: pointer; cursor: hand;" onclick="acaoSair();" >Sair</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div>
+  <div class="col-xs-1"></div>
+</nav>
+
+<!-- MODAL DE CONFIGURAÇÃO -->
+<div class="modal fade" id="meuPerfil" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<!-- CABEÇALHO MODAL -->
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title" id="myModalLabel">Meu Perfil</h4>
+			</div>
+			<!-- CORPO DO MODAL -->
+			<div class="modal-body">
+				<div class="esconde" id="resultado-editar-perfil"></div>
+				<form id="editar-perfil" name="editar-perfil">
+					<input type="hidden" name="acao" value="salva_editar_perfil">
+					<div class="field-wrap">
+						<label class="active"> Seu Nome<span class="req">*</span></label>
+						<input id="editar-perfil-nome" name="editar-perfil-nome" value="" autocomplete="off" type="text" />
+					</div>
+					<div class="field-wrap">
+						<label class="active"> Seu E-Mail<span class="req">*</span></label>
+						<input id="editar-perfil-email" name="editar-perfil-email" value="" autocomplete="off" type="text" />
+					</div>
+					<div class="field-wrap">
+						<label class="active"> Seu Telefone<span class="req">*</span></label>
+						<input name="editar-perfil-telefone" type="text" id="editar-perfil-telefone" maxlength="15" value="" onkeyup="mascara( this, mtel );" required autocomplete="off" />
+					</div>
+					<!-- BOTÕES MODAL -->
+					<div class="modal-footer">
+						<button type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
+						<button name="salvar-edicao" class="btn btn-primary" >Salvar</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+/********************************************/
+/* FUNÇÃO PARA BUSCAR OS DADOS DO USUÁRIO
+/********************************************/
+$(document).ready(function(){
+	if(id) {
+		var id = '&ID='+id;
+	} else {
+		var id = '&ID='+getCookie("ID");
+	}
+	
+	action = './classes/login-e-registro.php';
+	var meuajax;
+	meuajax = 'acao=query_perfil'+id; 
+	post = meuajax;
+	$.postJSON = function(url, data, func) { $.post(url+(url.indexOf("?") == -1 ? "?" : "&")+"callback=?", data, func, "json"); }
+	$.postJSON(action, { ajax: meuajax }, Resultado);
+	
+	function Resultado(dados)
+	{
+		// SETA NOS INPUTS OS DADOS DO JOGADOR SELECIONADO
+		document.getElementById("nome-capitao").innerHTML = dados.ok.NOME;
+		document.getElementById("editar-perfil-nome").value = dados.ok.NOME;
+		document.getElementById("editar-perfil-email").value = dados.ok.EMAIL;
+		document.getElementById("editar-perfil-telefone").value = dados.ok.TELEFONE;
+	}
+});
+
+/********************************************/
+/* FUNÇÃO PARA ABRIR O MODAL DE EDITAR PERFIL
+/********************************************/
+function modalPerfil() {
+	$('#meuPerfil').modal('show'); 
+}
+
+/********************************************/
+/* FUNÇÃO PARA SAIR DO SISTEMA
+/********************************************/
+function acaoSair() {
+	if(id) {
+		var id = '&ID='+id;
+	} else {
+		var id = '&ID='+getCookie("ID");
+	}
+	
+	action = './classes/login-e-registro.php';
+	var meuajax;
+	meuajax = 'acao=sair'+id; 
+	post = meuajax;
+	$.postJSON = function(url, data, func) { $.post(url+(url.indexOf("?") == -1 ? "?" : "&")+"callback=?", data, func, "json"); }
+	$.postJSON(action, { ajax: meuajax }, Resposta);
+}
+
+/********************************************/
+/* FUNÇÃO PARA SALVAR A EDIÇÃO DOS JOGADORES
+/********************************************/
+$("#editar-perfil").submit(function (_event_) {
+
+	_event_.preventDefault();
+	var meuForm = this;
+	var meuajax;
+	meuajax = $.param($(meuForm).serializeArray());
+	meuajax = meuajax+'&ID='+getCookie("ID");
+	post = meuajax;
+	$.postJSON = function(url, data, func) { $.post(url+(url.indexOf("?") == -1 ? "?" : "&")+"callback=?", data, func, "json"); }
+	$.postJSON('./classes/login-e-registro.php', { ajax: meuajax }, resultado);
+
+	function resultado(dados)
+	{
+		if (dados.ok) {
+			$('#resultado-editar-perfil').removeClass('esconde');
+			$('#resultado-editar-perfil').addClass('mostra');
+			document.getElementById("resultado-editar-perfil").innerHTML = dados.ok;
+		} else {
+			$('#resultado-editar-perfil').removeClass('esconde');
+			 $('#resultado-editar-perfil').css('background','#F54B4B')
+			$('#resultado-editar-perfil').addClass('mostra');
+			document.getElementById("resultado-editar-perfil").innerHTML = dados.erro;
+		}
+	}
+	
+});
+
+</script>

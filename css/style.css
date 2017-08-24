@@ -1,0 +1,524 @@
+/**************************************/
+/* STILO UNIVERSAL DO APLICATIVO
+/*
+/* Criador: Luigi Matheus Afornalli - SKORP
+/* Data: 23-08-15
+/* Versão: 1.0
+/*
+/**************************************/
+
+/**************************************/
+/* INDEX
+/**************************************
+
+0.0 - LAYOUT
+1.0 - TELA DE REGISTRO/LOGIN
+2.0 - NAVEGAÇÃO SUPERIOR
+
+/**************************************/
+/* CSS NÃO ORGANIZADO AINDA...
+/**************************************/
+body
+{
+font-family:'Georgia', Times New Roman, Times, serif;
+}
+body.background-dark {
+    background-color: rgba(102, 105, 104, 0.9) !important;
+    background-image: radial-gradient(ellipse farthest-side at 10% 0px , rgba(102, 105, 104, 0.9), rgba(93, 112, 119, 0.89), rgba(160, 174, 150, 0.9)) !important;
+	background-repeat: no-repeat !important;
+}
+body {
+    font-weight: 300;
+    padding-bottom: 100px;
+    background-image: radial-gradient(ellipse farthest-side at 10% 0px , rgba(74, 121, 147, 0.89), rgba(204, 204, 204, 0.85) 80%, rgba(185, 135, 131, 0.87) 120%);
+    background-attachment: fixed, fixed;
+	height: 100% !important;
+}
+html {
+	height: 100% !important;
+}
+#main
+{
+height:80px; border:1px dashed #29ABE2;margin-bottom:7px;
+width:500px;
+}
+a
+{
+color:#DF3D82;
+text-decoration:none;
+
+}
+a:hover
+{
+color:#DF3D82;
+text-decoration:underline;
+
+}
+.up
+{
+height:40px; font-size:24px; text-align:center; background-color:#009900; margin-bottom:2px;
+-moz-border-radius: 6px;-webkit-border-radius: 6px;
+}
+a:focus {
+    outline: none !important;
+    outline-offset: 0 !important;
+}
+.up a
+{
+color:#FFFFFF;
+text-decoration:none;
+
+}
+.up a:hover
+{
+color:#FFFFFF;
+text-decoration:none;
+
+}
+.down
+{
+height:40px; font-size:24px; text-align:center; background-color:#cc0000; margin-top:2px;
+-moz-border-radius: 6px;-webkit-border-radius: 6px;
+}
+
+.down a
+{
+color:#FFFFFF;
+text-decoration:none;
+
+}
+.down a:hover
+{
+color:#FFFFFF;
+text-decoration:none;
+
+}
+.box1
+{
+float:left; height:80px; width:50px;
+}
+
+.box2
+{
+float:left; width:440px; text-align:left;
+margin-left:6px;height:60px;margin-top:10px;
+font-weight:bold;
+
+font-size:18px;
+}
+img
+{
+border:none;
+padding-top:7px;
+
+}
+.mostra {  
+	display: block !important;
+}
+.esconde {  
+	display: none !important;
+}
+#mostra-resposta {	
+	width: 100%; 	
+	height: 100%; 	
+	background-color: rgb(26, 177, 136); 	
+	padding: 20px; 	
+	color: white;
+	margin-bottom: 40px;
+}
+#resultado-editar-jogador {	
+	width: 100%; 	
+	height: 100%; 	
+	background-color: rgb(26, 177, 136); 	
+	padding: 20px; 	
+	color: white;
+}
+#resultado-editar-perfil {	
+	width: 100%; 	
+	height: 100%; 	
+	background-color: rgb(26, 177, 136); 	
+	padding: 20px; 	
+	color: white;
+	margin-bottom: 30px;
+}
+.navbar {
+    border-radius: 0 !important;
+}
+
+/**************************************/
+/* 0.0 LAYOUT
+/**************************************/
+.row {
+	width: 100% !important;
+	height: 100% !important;
+}
+/*.row h1, h2, h3, h4, h5, h6 {
+	padding: 5px;
+	background-color: #1AB188;
+	margin: 0 !important;
+	color: #444D4E;
+}*/
+
+.btn.active, .btn:active {
+    background-image: none;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.row h1, h2, h3, h4, h5, h6 {
+    padding: 5px 5px 10px 5px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+    color: rgba(255, 255, 255, 0.87);
+    text-align: left;
+	font-size: 23px;
+	margin-bottom: 20px;
+}
+
+p {
+	color: rgb(206, 206, 206) !important; 
+	margin-bottom: 0px ! important;
+}
+/**************************************/
+/* 1.0 TELA DE REGISTRO/LOGIN
+/**************************************/
+
+.form {
+    background-color: rgba(34, 34, 34, 0.51) !important;
+    border-color: rgba(8, 8, 8, 0.21) !important;
+}
+
+/**************************************/
+/* 2.0 NAVEGAÇÃO SUPERIOR
+/**************************************/
+
+.navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:focus, .navbar-inverse .navbar-nav > .active > a:hover {
+    color: #FFF !important;
+    background-color: rgba(8, 8, 8, 0.29) !important;
+}
+
+.navbar-inverse {
+    background-color: rgba(34, 34, 34, 0.51) !important;
+    border-color: rgba(8, 8, 8, 0.11) !important;
+}
+
+.navbar-inverse .navbar-toggle {
+    border: none !important;
+}
+
+.navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {
+    border: none !important;
+}
+
+.navbar-inverse .navbar-toggle:focus, .navbar-inverse .navbar-toggle:hover {
+    background-color: transparent !important;
+}
+/*
+LOGO ADICIONADA POR ISSO ESSA FUNÇÃO FOI DESABILITADA
+/*
+/*
+.navbar-brand
+{
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 0;
+    text-align: center;
+    margin: auto;
+}*/
+.navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:focus, .navbar-inverse .navbar-nav > .open > a:hover {
+    background-color: rgba(34, 34, 34, 0.77) !important
+}
+.dropdown-menu {
+    background-color: rgba(34, 34, 34, 0.51) !important;
+}
+.dropdown-menu > li > a:focus, .dropdown-menu > li > a:hover {
+    background-color: rgba(34, 34, 34, 0.51) !important;
+    color: #9D9D9D !important;
+}
+.dropdown-menu > li > a {
+    color: #9D9D9D !important;
+}
+.dropdown-menu .divider {
+    background-color: rgba(146, 143, 143, 0.3) !important;
+}
+
+/* BOTÃO SAIR*/
+#sair .button {
+	border: 0px none;
+	outline: medium none;
+	border-radius: 0px;
+	padding: 3px 20px;
+	font-size: 14px;
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 0.1em;
+	background: rgba(26, 177, 136, 0) none repeat scroll 0% 0%;
+	color: #9D9D9D;
+	transition: all 0.5s ease 0s;
+	font-weight: 400;
+	text-transform: none;
+	text-align: left;
+}
+#sair .button:hover {
+	border: 0px none;
+	outline: medium none;
+	border-radius: 0px;
+	padding: 3px 20px;
+	font-size: 14px;
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 0.1em;
+	background: rgba(34, 34, 34, 0.51) !important;
+	color: #9D9D9D;
+	transition: all 0.5s ease 0s;
+	font-weight: 400;
+	text-transform: none;
+	text-align: left;
+}
+#sair .button:focus {
+	border: 0px none;
+	outline: medium none;
+	border-radius: 0px;
+	padding: 3px 20px;
+	font-size: 14px;
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 0.1em;
+	background: rgba(34, 34, 34, 0.51) !important;
+	color: #9D9D9D;
+	transition: all 0.5s ease 0s;
+	font-weight: 400;
+	text-transform: none;
+	text-align: left;
+}
+#sair .button:active {
+	border: 0px none;
+	outline: medium none;
+	border-radius: 0px;
+	padding: 3px 20px;
+	font-size: 14px;
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 0.1em;
+	background: rgba(34, 34, 34, 0.51) !important;
+	color: #9D9D9D;
+	transition: all 0.5s ease 0s;
+	font-weight: 400;
+	text-transform: none;
+	text-align: left;
+}
+
+/**************************************/
+/* 3.0 NAVEGAÇÃO LATERAL
+/**************************************/
+.menu-lateral {
+	background-color: rgba(34, 34, 34, 0.51) !important;
+	padding: 1% !important;
+	margin-right: 1.5% !important;
+}
+.menu-lateral ul {
+	padding: 0 !important;
+	margin: 0 !important;
+}
+.menu-lateral ul li {
+	background-color: rgba(91, 98, 100, 0) !important;
+	list-style: outside none none !important;
+	text-align: center;
+	margin: 5px !important;
+	padding: 5px !important;
+	box-shadow: none !important;
+}
+.menu-lateral ul li:hover {
+	background-color: rgba(91, 98, 100, 0.33) !important;
+	list-style: outside none none !important;
+}
+.menu-lateral ul a {
+	color: rgba(255, 255, 255, 0.64) !important;
+	font-size: 20px;
+}
+.menu-lateral ul a:hover {
+    text-decoration: none !important;
+}
+.menu-lateral ul a:focus {
+    text-decoration: none !important;
+}
+.menu-lateral ul a:active {
+    text-decoration: none !important;
+}
+.navbar-left a:hover {
+	font-size: 20px;
+}
+
+/**************************************/
+/* 4.0 BOX DE CONTEUDO DINAMICO
+/**************************************/
+.box-conteudo {
+	background-color: rgba(34, 34, 34, 0.51) !important;
+	padding: 1% !important;
+}
+
+.box-conteudo section {
+    padding: 15px 5px 10px;
+    color: #DBDBDB;
+}
+
+/* CAMPO DE FUTEBOL */
+.campo-futebol {
+	background-color: #1AB16C !important;
+	/*background-color: #1AB188 !important;*/
+}
+
+#campo-futebol {
+	border: 2.5px solid black;
+	padding: 0 !important;
+	height: 450px; 
+	margin-bottom: 1%;
+}
+
+#area {
+	height: 125px; 
+	left: 50%; 
+	margin-left: -34%;
+	padding: 0 !important;
+	
+	border-left: 2.5px solid #000;
+	border-right: 2.5px solid #000;
+	border-bottom: 2.5px solid #000;
+}
+
+#area-goleiro {
+	height: 50%;
+	left: 50%;
+	margin-left: -34%;
+	border-left: 2.5px solid #000;
+	border-right: 2.5px solid #000;
+	border-bottom: 2.5px solid #000;
+	padding: 0px !important;
+}
+
+#meio-campo {
+	border-top-right-radius: 100px;
+	box-sizing: border-box;
+	height: 65px;
+	border-top-left-radius: 100px;
+	border: 2.5px solid #000;
+	border-bottom: none !important;
+	bottom: -85.5% !important;
+	left: 4.5%;
+}
+
+/* FIM CAMPO DE FUTEBOL */
+#adiciona-jogador {
+	padding: 10px !important;
+}
+
+@font-face {
+	font-family: "kingcity";
+	src: url("icons/kingcity.otf");
+}
+
+@media screen and (max-width: 480px) {
+	#icone-jogador {
+		width: 65% !important;
+		margin-left: 75% !important;
+	}
+	#h1-estatisticas {
+		font-size: 4.5vw !important; 
+	}
+	table {
+		font-size: 2.05vw !important;
+	}
+	#GL #LE #MC #LD #AE #AC #AD {
+		margin-left: 50% !important;
+	}
+}
+.popover {
+	margin-top: 15% !important;
+	margin-left: 5% !important;
+	width: 100% !important;
+	height: auto !important;
+}
+
+/**************************************/
+/* 4.0 MODAL MEU PERFIL
+/**************************************/
+
+#meuPerfil .modal-dialog .modal-content {
+    background-color: rgba(45, 49, 44, 0.82) !important;
+    color: rgba(255, 255, 255, 0.87);
+}
+
+#meuPerfil .modal-dialog .modal-content .modal-header {
+    border: medium none !important;
+}
+
+#meuPerfil .modal-dialog .modal-content .modal-footer {
+    border: medium none !important;
+}
+
+/**************************************/
+/* 5.0 BOTÕES
+/**************************************/
+
+.close {
+    color: #FFF ! important; 
+    text-shadow: 0px 1px 0px #FFF ! important; 
+    opacity: 0.4 ! important; 
+}
+
+.btn-primary {
+    color: rgb(198, 198, 198) ! important; 
+    background-color: rgba(31, 33, 30, 0.77) ! important; 
+    border-color: rgb(31, 33, 30) ! important; 
+}
+
+.btn-primary:hover {
+    color: rgb(198, 198, 198) ! important; 
+    background-color: rgba(31, 33, 30, 0.77) ! important; 
+    border-color: rgb(31, 33, 30) ! important; 
+}
+
+/**************************************/
+/* 6.0 FOOTER
+/**************************************/
+
+footer {
+	min-height: 50px; 
+	background-color: rgba(34, 34, 34, 0.51) ! important; 
+	margin-top: 80px;
+	
+	/*bottom: 0px !important;
+	position: fixed !important;
+	width: 100% !important;*/
+}
+
+footer p {
+	margin: auto ! important; 
+	padding: 20px ! important; 
+	text-align: right;
+}
+
+/**************************************/
+/* 7.0 MARCAR JOGO
+/**************************************/
+
+#codigo-marcar-jogo {
+    width: 100%;
+    background-color: rgba(34, 34, 34, 0.51) !important;
+    height: 70px;
+    margin-top: 10px;
+	padding: 6px;
+}
+
+select {
+    font-size: 22px !important;
+    display: block !important;
+    width: 100% !important;
+    height: 3% !important;
+    padding: 5px 10px !important;
+    background: transparent none repeat scroll 0% 0% !important;
+    border: 1px solid #A0B3B0 !important;
+    color: #FFF !important;
+    border-radius: 0px !important;
+    transition: border-color 0.25s ease 0s, box-shadow 0.25s ease 0s !important;
+}

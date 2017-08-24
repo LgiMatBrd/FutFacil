@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<!-- METAS -->
+<meta http-equiv="Content-Type" content="text/html"; charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<!-- TITULO -->
+<title>FUTFÁCIL</title>
+
+
+<!-- FONTES -->
+<link href="http://fonts.googleapis.com/css?family=Titillium+Web:400,300,600" rel="stylesheet" type="text/css">
+
+<!-- ICONES -->
+<link rel="stylesheet" href="icons/font-awesome.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+
+<!-- STYLES -->
+<link rel="stylesheet" type="text/css" href="css/style.css" />
+<link rel="stylesheet prefetch" href="css/normalize.css">
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="css/login.css" />
+
+<!-- JQUERY & BOOTSTRAP -->
+<script src="js/jquery.min.js"></script>
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>-->
+<script src="js/bootstrap.min.js"></script>
+ 
+   
+<!--<script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
+<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />-->
+
+</head>
+
+<script type="text/javascript">
+/* Máscaras ER */
+function mascara(o,f){
+		v_obj=o
+		v_fun=f
+		setTimeout("execmascara()",1)
+}
+function execmascara(){
+		v_obj.value=v_fun(v_obj.value)
+}
+function mtel(v){
+		v=v.replace(/\D/g,"");						 //Remove tudo o que não é dígito
+		v=v.replace(/^(\d{2})(\d)/g,"($1) $2"); //Coloca parênteses em volta dos dois primeiros dígitos
+		v=v.replace(/(\d)(\d{4})$/,"$1-$2");		//Coloca hífen entre o quarto e o quinto dígitos
+		return v;
+}
+function id( el ){
+	return document.getElementById( el );
+}
+
+/* CÓDIGO ANTIGO PARA EFEITO DO TELEFONE */
+/*window.onload = function(){
+	id('telefone-registro').onkeyup = function(){
+		mascara( this, mtel );
+	}
+	id('telefone-login').onkeyup = function(){
+		mascara( this, mtel );
+	}
+}*/
+</script>
+
+<style>
+/*****************************************************************/
+/*
+/* CÓDIGO PARA TORNAR O APLICATIVO RESPONSIVO
+/*
+/* Autor: Luigi Matheus Afornalli Breda
+/*	Link: http://skorp.com.br
+/* Data: 22/10/2015
+/*
+/*****************************************************************/
+/* CSS DO SELETOR DE PERIODO */
+#escolherPeriodo li:hover, #escolherPeriodo li:active, #escolherPeriodo li:focus {
+		background-color: rgba(0, 0, 0, 0.67) !important;
+}
+#escolherPeriodo .sel {
+		background-color: rgba(0, 0, 0, 0.67) !important;
+}
+#escolherPeriodo {
+		width: 100% !important;
+}
+#escolherPeriodo li {
+		padding: 10px ;
+		background-color: #222 !important ;
+		/*width: 33% !important;*/
+		width: 32% !important ;
+		text-align: center ;
+		font-weight: 600 ;
+		font-size: 20px ;
+		cursor: pointer !important;
+}
+label {
+		color: rgba(255, 255, 255, 0.5);
+		transition: all 0.25s ease 0s ;
+		pointer-events: none ;
+		font-size: 22px ;
+		position: relative !important ;
+		transform: none !important ;
+		margin: 0px 0px 6px !important;
+}
+.esquerda {
+		margin-right: 2%;
+}
+.meio {
+		margin-right: 2%;
+}
+.direita {
+		
+}
+#confirmar-dados .field-wrap {
+		position: relative;
+		margin-bottom: 25px;
+}
+#confirmar-dados .modal-footer {
+		padding: 0 !important;
+}
+#confirmar-dados .modal-footer .col-xs-4 {
+		width: 32% !important;
+}
+
+/* RESPONSIVIDADE */
+@media only screen and (max-device-width: 680px) {
+
+	/* GERAL */
+	.h1, h1 {
+		font-size: 6.5vw !important;
+		text-align: center !important;
+		font-weight: 800 !important;
+	}
+
+	#campo-futebol h1 {
+		font-size: 6.5vw !important;
+		text-align: center;
+		font-weight: 800 !important;
+		padding: 5px 0px 5px !important;
+		text-align: center !important;
+	}
+
+	.col-xs-10 {
+		width: 90%;
+		margin: 0 !important;
+		padding: 0 !important;
+	}
+
+	/* CAMPO DE FUTEBOL */
+	#campo-futebol {
+		width: 100% !important;
+	}
+
+	#area {
+		height: 30% !important;
+	}
+
+	#area a img {
+		width: 77% !important;
+		height: auto !important;
+		margin-left: -40px !important;
+		margin-top: -5px !important;
+	}
+
+	#campo-futebol {
+		height: 250px !important;
+	}
+
+	#meio-campo {
+		height: 36px !important;
+	}
+
+	.popover {
+		display: none !important;
+	}
+
+	/* TELA ADICIONA JOGADOR */
+	#pai-adiciona-jogador {
+		width: 100% !important;
+		padding: 0 !important;
+		margin-bottom: 2% !important;
+	}
+
+	#mensagem-adiciona-jogador {
+		width: 100% !important;
+		padding: 0 !important;
+		margin-bottom: 2% !important;
+	}
+
+	#editar-jogador button {
+		width: 100% !important;
+		font-size: 6.5vw !important;
+	}
+
+	#editar-jogador .field-wrap {
+		padding: 0px !important;
+		margin: 0px 0px 20px 0px !important;
+	}
+
+	/* MARCAR JOGO */
+	#codigo-marcar-jogo button {
+		font-size: 20px !important;
+		width: 100%;
+		height: 100% !important;
+		font-size: 6.5vw !important;
+	}
+
+	.modal-header .close {
+		width: 5% !important;
+		padding-top: 8px;
+	}
+
+	.selecao-periodo {
+		display: block !important;	
+	}
+
+	.modal-header {
+		min-height: 16.43px;
+		padding: 5px 15px 15px 15px !important;
+		border-bottom: 1px solid #E5E5E5;
+	}
+
+	.modal-footer {
+		padding: 0 !important;
+		margin-top: 40px !important;
+	}
+
+	#marcar-jogo-final .field-wrap {
+		margin-bottom: 15px !important;
+	}
+
+	#marcar-jogo-final .field-wrap .navbar-collapse {
+		display: block !important;
+	}
+
+	#marcar-jogo-final .field-wrap .navbar-collapse #escolherPeriodo {
+		margin: 0 !important;
+		padding: 0 !important;
+	}
+
+	#marcar-jogo-final .field-wrap .navbar-collapse #escolherPeriodo li {
+		float: left !important;
+	}
+
+}
+#marcar-jogo-final .field-wrap input {
+	 font-size: 22px !important;
+	 display: block !important;
+	 width: 100% !important;
+	 height: 100% !important;
+	 padding: 5px 10px !important;
+	 background: transparent none repeat scroll 0% 0% !important;
+	 border: 1px solid #A0B3B0 !important;
+	 color: #FFF !important;
+	 border-radius: 0px !important;
+	 transition: border-color 0.25s ease 0s, box-shadow 0.25s ease 0s !important; 
+}
+</style>
+
+<body class="background-dark">
+

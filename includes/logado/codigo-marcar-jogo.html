@@ -1,0 +1,108 @@
+<button class="col-xs-4 button" style="float: right;" name="confirmar-dados" onclick="marcarJogo();">MARCAR JOGO</button> 
+
+<!-- MODAL MARCAR JOGO -->
+<div class="teste modal fade" id="meuPerfil" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+   <div class="modal-dialog" role="document">
+      <div class="modal-content">
+         <!-- CABEÇALHO MODAL -->
+         <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">MARCAR UM NOVO JOGO</h4>
+         </div>
+         <!-- CORPO DO MODAL -->
+         <div class="modal-body">
+            <div style="display: none; width: 100%; height: 100%; padding: 20px; color: white; margin-bottom: 20px;" id="resultado-marcar-jogo">Perfil editado com sucesso!</div>
+            <form id="marcar-jogo-final" name="salvar-marcar-jogo-final">
+               <input type="hidden" name="acao" value="marcar-jogo-final">
+               <div class="field-wrap">
+                   <label class="active"> Periodo Desejado?<span class="req">*</span></label>			
+                    <div style="padding: 0px ! important;" class="collapse navbar-collapse selecao-periodo" id="navbar-collapse-1">			
+                        <ul id="escolherPeriodo" class="nav navbar-nav">
+                             <li class="esquerda" data-option="manha">MANHA</li>
+                             <li class="meio" data-option="tarde">TARDE</li>
+                             <li class="direita" data-option="noite">NOITE</li>
+                        </ul>
+                    </div>
+               </div>
+               <!--<div class="field-wrap"> 
+                  <label class="active"> Selecione os dias que você está disponivel<span class="req">*</span></label>
+						<input placeholder="Selecione uma data..." name="datas-desejadas" class="form-control" id="datas-desejadas" onkeyup="mascara( this, mtel );" autocomplete="off" type="text">
+               </div>-->
+               <div class="field-wrap"> 
+                  <label class="active"> Confirme Seu Telefone<span class="req">*</span></label>
+                  <input name="confirmacao-telefone" type="text" id="confirmacao-telefone" maxlength="15" onkeyup="mascara( this, mtel );" autocomplete="off" placeholder="(00) 0000-0000" required />
+               </div>
+               <!-- BOTÕES MODAL -->
+               <div class="modal-footer">
+			    <button id="marcar-jogo-final" type="submit" class="col-xs-4 button" style="float: right;">MARCAR JOGO</button> 
+				</div>
+            </form>
+         </div>
+      </div>
+   </div>
+</div>
+
+<script>
+$(function() { // when page loads
+	$("#escolherPeriodo li").on("click",function() { // when LI is clicked
+	  $(this)
+		.addClass("sel")
+		.siblings().removeClass("sel"); // Swap class
+	});
+});
+    
+function marcarJogo() {
+	$('.teste').modal('show'); 
+}
+
+/*$('#confirmacao-telefone').datepicker({
+	format: "dd/mm/yyyy",
+	language: "pt-BR",
+	multidate: true
+});*/
+
+/********************************************/
+/* FUNÇÃO PARA MARCAR OS JOGOS
+/********************************************/
+$('#marcar-jogo-final').submit(function (_event_) {
+	_event_.preventDefault();
+	var option = $("#escolherPeriodo li.sel").data("option");
+	
+	if(!option) {
+		$("#resultado-marcar-jogo").css("display", "block");
+		$("#resultado-marcar-jogo").css("background-color", "rgb(204, 31, 31)");
+		document.getElementById("resultado-marcar-jogo").innerHTML = "Selecione o período disponível para jogar.";
+	} else {
+		//alert('Não foi encontrado nenhum jogador no momento, assim que acharmos iremos lhe avisar por telefone.');
+		/*$('#marcar-jogo-final').button('Procurando um time...').delay(800);
+		$('#marcar-jogo-final').hide('slow');
+		$('#resultado-editar-perfil').removeClass('esconde');
+		$('#resultado-editar-perfil').addClass('mostra');
+		document.getElementById("resultado-editar-perfil").innerHTML = "ee";*/
+
+		var meuForm = this;
+		var meuajax;
+		meuajax = $.param($(meuForm).serializeArray());
+		meuajax = meuajax+'&ID='+getCookie("ID")+'&PER='+option;
+		post = meuajax;
+		$.postJSON = function(url, data, func) { $.post(url+(url.indexOf("?") == -1 ? "?" : "&")+"callback=?", data, func, "json"); }
+		$.postJSON('./classes/login-e-registro.php', { ajax: meuajax }, resultado2);
+	}
+	
+});
+
+function resultado2(dados)
+{
+	if (dados.ok) {
+		$("#resultado-marcar-jogo").css("display", "block");
+		$("#resultado-marcar-jogo").css("background-color", dados.color);
+		document.getElementById("resultado-marcar-jogo").innerHTML = dados.ok;
+		atualizar();
+	} else {
+		$("#resultado-marcar-jogo").css("display", "block");
+		$("#resultado-marcar-jogo").css("background-color", dados.color);
+		document.getElementById("resultado-marcar-jogo").innerHTML = dados.erro;
+		atualizar();
+	}
+}
+</script>
